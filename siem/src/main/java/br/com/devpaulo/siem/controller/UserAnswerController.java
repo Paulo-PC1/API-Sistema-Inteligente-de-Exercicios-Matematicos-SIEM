@@ -1,5 +1,5 @@
 package br.com.devpaulo.siem.controller;
 
-public class CategoryController {
+public class UserAnswerController {
 
 }

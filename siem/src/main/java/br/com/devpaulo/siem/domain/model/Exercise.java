@@ -9,7 +9,7 @@ public class Exercise {
 	private String operation;
 	private Double correctAnswer;
 	private Boolean active;
-	// private Long categoryId;
+	private Long categoryId;
 
 	public Long getId() {
 		return id;
@@ -49,6 +49,14 @@ public class Exercise {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Long categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	@Override

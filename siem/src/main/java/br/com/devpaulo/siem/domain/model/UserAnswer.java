@@ -7,8 +7,8 @@ public class UserAnswer {
 	private Long id;
 	private Double userAnswer;
 	private Boolean correct;
-	// private Long userId;
-	// private Long exerciseId;
+	private Long userId;
+	private Long exerciseId;
 
 	public Long getId() {
 		return id;
@@ -32,6 +32,22 @@ public class UserAnswer {
 
 	public void setCorrect(Boolean correct) {
 		this.correct = correct;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+
+	public Long getExerciseId() {
+		return exerciseId;
+	}
+
+	public void setExerciseId(Long exerciseId) {
+		this.exerciseId = exerciseId;
 	}
 
 	@Override
