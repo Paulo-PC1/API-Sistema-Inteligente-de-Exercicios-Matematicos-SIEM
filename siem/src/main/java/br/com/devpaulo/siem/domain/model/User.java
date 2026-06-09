@@ -2,11 +2,32 @@ package br.com.devpaulo.siem.domain.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank
+	@Size(min = 3, max = 200)
 	private String name;
+	@Email
+	@NotBlank
+	@NotNull
 	private String email;
+	@NotBlank
+	@Size(min = 8, max = 50)
 	private String password;
 	private Boolean active;
 
