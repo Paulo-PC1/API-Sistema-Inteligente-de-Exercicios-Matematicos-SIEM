@@ -1,12 +1,12 @@
-CREATE TABLE users (
+CREATE TABLE user (
 	id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
 	name VARCHAR(200) NOT NULL,
 	email VARCHAR(50) NOT NULL,
 	password VARCHAR(50) NOT NULL,
-	active TINYINT(1) NOT NULL,
+	active TINYINT(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO users (id, name, email, password, active) values
+INSERT INTO user (id, name, email, password, active) values
 	(1, "Paulo Cezar", "paulocezar@email.com", "962F42B7F14627731A6289B11A6E90155DBDD477", 1),
 	(2, "José Henrique", "henriquejose@email.com", "ECC355B3F6FCCB91EAA658804FBDD33140B83761", 1),
 	(3, "Ana Maria", "mariaana@email.com", "097CE3F3F0459FFD4B554E2ACE3C423B8BD27565", 1),
