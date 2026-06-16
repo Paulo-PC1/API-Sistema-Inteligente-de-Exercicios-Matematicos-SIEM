@@ -2,12 +2,14 @@ package br.com.devpaulo.siem.domain.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -18,9 +20,12 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank
+	@NotNull
 	@Size(min = 10, max = 150)
+	@Column(name = "category_name")
 	private String categoryName;
 	@NotBlank
+	@NotNull
 	@Size(min = 20, max = 200)
 	private String description;
 
