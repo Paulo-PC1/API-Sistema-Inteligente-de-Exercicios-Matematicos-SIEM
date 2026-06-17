@@ -2,14 +2,37 @@ package br.com.devpaulo.siem.domain.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "exercise")
 public class Exercise {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
+	@NotBlank
 	private String statement;
 	private String operation;
+	@NotBlank
+	@NotNull
+	@Column(name = "correct_answer")
 	private Double correctAnswer;
 	private Boolean active;
-	private Long categoryId;
+	@NotNull
+	@JoinColumn(name = "category_id")
+	@ManyToOne
+	private Category categoryId;
 
 	public Long getId() {
 		return id;
@@ -51,11 +74,11 @@ public class Exercise {
 		this.active = active;
 	}
 
-	public Long getCategoryId() {
+	public Category getCategoryId() {
 		return categoryId;
 	}
 
-	public void setCategoryId(Long categoryId) {
+	public void setCategoryId(Category categoryId) {
 		this.categoryId = categoryId;
 	}
 
