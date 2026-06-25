@@ -2,13 +2,36 @@ package br.com.devpaulo.siem.domain.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "user_answer")
 public class UserAnswer {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
+	@NotEmpty
 	private Double userAnswer;
+	@NotNull
 	private Boolean correct;
-	private Long userId;
-	private Long exerciseId;
+	@NotNull
+	@JoinColumn(name = "user_id")
+	@ManyToOne
+	private User userId;
+	@NotNull
+	@JoinColumn(name = "exercise_id")
+	@ManyToOne
+	private Exercise exerciseId;
 
 	public Long getId() {
 		return id;
@@ -34,19 +57,19 @@ public class UserAnswer {
 		this.correct = correct;
 	}
 
-	public Long getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Long userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 
-	public Long getExerciseId() {
+	public Exercise getExerciseId() {
 		return exerciseId;
 	}
 
-	public void setExerciseId(Long exerciseId) {
+	public void setExerciseId(Exercise exerciseId) {
 		this.exerciseId = exerciseId;
 	}
 

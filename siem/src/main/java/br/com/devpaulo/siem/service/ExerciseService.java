@@ -3,10 +3,12 @@ package br.com.devpaulo.siem.service;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
 
 import br.com.devpaulo.siem.domain.model.Exercise;
 import br.com.devpaulo.siem.repository.ExerciseRepository;
 
+@Service
 public class ExerciseService {
 
 	@Autowired
