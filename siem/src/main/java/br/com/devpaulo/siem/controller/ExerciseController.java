@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,11 +34,13 @@ public class ExerciseController {
 	private ExerciseService exerciseService;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_EXERCISE')")
 	public List<Exercise> findAll(){
 		return exerciseRepository.findAll();
 	}
 	
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_EXERCISE')")
 	public ResponseEntity<Exercise> findById(@PathVariable Long id){
 		Optional<Exercise> exercise = exerciseRepository.findById(id);
 		if(exercise.isPresent()) {
@@ -47,24 +50,28 @@ public class ExerciseController {
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_EXERCISE')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Exercise createExercise(@Valid @RequestBody Exercise exercise, HttpServletResponse response) {
 		return exerciseRepository.save(exercise);
 	}
 	
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_REMOVE_EXERCISE')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void removeExersice(@PathVariable Long id) {
 		exerciseRepository.deleteById(id);
 	}
 	
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_EXERCISE')")
 	public ResponseEntity<Exercise> updateExercise(@PathVariable Long id, @Valid @RequestBody Exercise exercise) {
 		Exercise exerciseSaved = exerciseService.update(id, exercise);
 		return ResponseEntity.ok(exerciseSaved);
 	}
 
 	@PutMapping("/{id}/active")
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_EXERCISE')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void updateActiveProperty(@PathVariable Long id, @RequestBody Boolean active) {
 		exerciseService.updateActiveProperty(id, active);

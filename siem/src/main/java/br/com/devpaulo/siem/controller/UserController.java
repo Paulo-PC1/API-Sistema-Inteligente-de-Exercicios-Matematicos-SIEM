@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,11 +34,13 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_USER')")
 	public List<User> findAll() {
 		return userRepository.findAll();
 	}
 
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_SEARCH_USER')")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
 		Optional<User> user = userRepository.findById(id);
 		if (user.isPresent()) {
@@ -47,24 +50,28 @@ public class UserController {
 	}
 
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_USER')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public User createUser(@Valid @RequestBody User user, HttpServletResponse response) {
 		return userRepository.save(user);
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_REMOVE_USER')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void removeUser(@PathVariable Long id) {
 		userRepository.deleteById(id);
 	}
 
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_USER')")
 	public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User user) {
 		User userSaved = userService.update(id, user);
 		return ResponseEntity.ok(userSaved);
 	}
 
 	@PutMapping("/{id}/active")
+	@PreAuthorize("hasAuthority('ROLE_REGISTER_USER')") 
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void updateActiveProperty(@PathVariable Long id, @RequestBody Boolean active) {
 		userService.updateActiveProperty(id, active);
