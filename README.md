@@ -150,6 +150,6 @@ Professor: **Fernando Vieira Duarte**
 
 ## 👨‍💻 Autor
 
-**Paulo**
+**Paulo Cezar**
 
 Projeto desenvolvido como requisito para conclusão da disciplina **Desenvolvimento Web II**.
