@@ -19,7 +19,7 @@ public class SpringDocConfig {
                 .info(new Info()
                         .title("SIEM API")
                         .version("1.0")
-                        .description("Documentação da API do iFitness com autenticação JWT."))
+                        .description("Documentação da API do SIEM com autenticação JWT."))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(new Components()
                         .addSecuritySchemes(securitySchemeName,
