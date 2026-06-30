@@ -24,7 +24,6 @@ public class Exercise {
 	@NotBlank
 	private String statement;
 	private String operation;
-	@NotBlank
 	@NotNull
 	@Column(name = "correct_answer")
 	private Double correctAnswer;
