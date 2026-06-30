@@ -17,7 +17,7 @@ public class SpringDocConfig {
         final String securitySchemeName = "bearerAuth";
         return new OpenAPI()
                 .info(new Info()
-                        .title("iFitness API")
+                        .title("SIEM API")
                         .version("1.0")
                         .description("Documentação da API do iFitness com autenticação JWT."))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
